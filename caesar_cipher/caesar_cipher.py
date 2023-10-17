@@ -9,13 +9,12 @@ def __encrypt(text: str, shift: int) -> [str, str]:
 
     for character in text:
         ascii_val = ord(character)
-        ascii_val += shift
 
-        if ascii_val > max_ascii_threshold:
+        if ascii_val != 32:
+            ascii_val += shift
+
+        while ascii_val > max_ascii_threshold:
             ascii_val -= 26
-
-        if ascii_val == 32 + shift:
-            ascii_val = 32
         
         encrypted_ascii += str(ascii_val)
         encrypted_text += chr(ascii_val) 
@@ -30,11 +29,11 @@ def __decrypt(encrypted_ascii: str, shift: int) -> str:
     for i in range(0, len(encrypted_ascii), +2):
         ascii_str = encrypted_ascii[i] + encrypted_ascii[i+1]
         ascii_int = int(ascii_str)
-        ascii_int -= shift
+        
+        if ascii_int != 32:
+            ascii_int -= shift
 
-        if ascii_int == 32 - shift:
-            ascii_int = 32
-        elif ascii_int < min_ascii_threshold:
+        while ascii_int < min_ascii_threshold and ascii_int != 32:
             ascii_int += 26
 
         decrypted_text += chr(ascii_int)

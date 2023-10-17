@@ -1,6 +1,7 @@
 from colorama import Fore
 from util.util import custom_print, colored_array_print
 from caesar_cipher import caesar_cipher
+from diffie_hellman import diffie_hellman
 
 
 def main():
@@ -27,6 +28,9 @@ def main():
             case 1:
                 caesar_cipher.run()
 
+            case 2:
+                diffie_hellman.run()
+
 
 def print_menu():
     print('\n*********************************************************************')
@@ -36,6 +40,7 @@ def print_menu():
 
     [0] Exit
     [1] Caesar Cipher
+    [2] Diffie-Hellman
     ''')
 
 
